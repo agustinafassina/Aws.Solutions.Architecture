@@ -1,6 +1,5 @@
 # ☁️ Aws.Architecture
 A reference repository for **architecture and solutions on Amazon Web Services (AWS)**: exported diagrams, cloud design patterns, **databases**, **best practices**, and complementary material added over time.
-
 It started as a **diagram** collection (regional views, security, and services); the goal is to **grow** into short guides, design notes, checklists, and other resources useful for teams building on AWS—without replacing the official AWS documentation.
 
 ## 📚 Current contents
