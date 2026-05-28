@@ -13,6 +13,7 @@ Reference **AWS architectures and short guides**: diagrams, decision tables, and
 | 🍃 | [`ec2-mongodb-s3-backups/`](./ec2-mongodb-s3-backups/) | MongoDB on EC2 vs DocumentDB; backups to S3 — scripts in [Aws.Ec2.MongoDB.WithBackups.S3](https://github.com/agustinafassina/Aws.Ec2.MongoDB.WithBackups.S3). |
 | 🗄️ | [`rds-vs-aurora-vs-dynamodb/`](./rds-vs-aurora-vs-dynamodb/) | When to use RDS, Aurora, or DynamoDB (decision tables). |
 | 🔐 | [`password-policies-iam/`](./password-policies-iam/) | IAM password policy, rotation, MFA, Access Analyzer. |
+| 📦 | [`ecr-lifecycle-ecs/`](./ecr-lifecycle-ecs/) | ECR lifecycle diagram + [**Terraform**](./ecr-lifecycle-ecs/terraform/) (`repositories.tf`). |
 
 **Convention:** each folder has a `README.md` and, when applicable, a diagram (`diagram.jpg` / `diagram.png`). Add a row here when you add a new top-level folder.
 

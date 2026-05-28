@@ -1,0 +1,7 @@
+# Optional overrides only. Repository names are defined in repositories.tf
+
+aws_region = "us-east-1"
+
+# untagged_expire_days   = 1
+# image_count_more_than  = 3
+# max_image_age_days     = 90
