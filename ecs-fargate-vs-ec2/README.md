@@ -5,12 +5,13 @@ Short **decision guide** for running containers on **Amazon ECS**. Two axes that
 
 Reference diagram: [`diagram.jpg`](./diagram.jpg).
 
-![ECS Fargate vs EC2 launch types — capacity comparison and three task patterns](./diagram.jpg)
+![ECS Fargate vs EC2 — both run Docker containers from ECR; different compute layer](./diagram.jpg)
 
 ## 🔎 What the diagram shows
-- **Left — Fargate:** ECS schedules tasks on **serverless** capacity; no EC2 hosts to manage; per-task vCPU/memory billing.
-- **Right — EC2 launch type:** ECS runs tasks on **your EC2 fleet** (ASG); **bin-packing** multiple tasks per instance; **Spot**, **GPU**, and **daemon** tasks.
-- **Bottom — task patterns:** **batch** (run and stop), **event-driven** (scale to zero on SQS/events), **always-on** (Service behind ALB) — independent of launch type.
+- **Amazon ECR** at the top — the **same Docker image** is pulled by tasks on either launch type.
+- **Left — Fargate:** ECS runs **Docker containers** on **serverless** Fargate capacity; no EC2 hosts to manage; per-task vCPU/memory billing.
+- **Right — EC2 launch type:** ECS runs the **same Docker containers** on **your EC2 fleet** (ASG); **bin-packing** multiple containers per instance; **Spot**, **GPU**, and **daemon** tasks.
+- **Bottom — task patterns:** **batch** (run and stop), **event-driven** (scale to zero on SQS/events), **always-on** (Service behind ALB) — any pattern works with **either** launch type and **Docker**.
 
 > **Not covered here:** ECS vs EKS vs Lambda (compute model choice), CI/CD to ECS, or autoscaling deep dives. For the image side see [`ecr-lifecycle-ecs/`](../ecr-lifecycle-ecs/); for the full stack see [`complete-infrastructure/`](../complete-infrastructure/).
 
@@ -22,7 +23,7 @@ Reference diagram: [`diagram.jpg`](./diagram.jpg).
 | **Service** | Keeps N tasks alive, wires them to the ALB, does rolling deploys and **autoscaling**. |
 | **Cluster** | Logical grouping; capacity comes from **Fargate** or **EC2**. |
 
-**Key idea:** *launch type* (Fargate/EC2) is **independent** from *task pattern*. Any pattern below runs on either launch type.
+**Key idea:** both launch types run **Docker** containers from **ECR** — the split is *who provides the compute* (Fargate vs EC2), not the container format. *Launch type* is also **independent** from *task pattern*; any pattern below runs on either side.
 
 ## 🔁 Task patterns (the three "tipos de task")
 ```mermaid
