@@ -1,4 +1,6 @@
 # 🛡️ Complete infrastructure with security services on AWS
+**Deployment model 1** in [`deploy-services/`](../deploy-services/): **always-on containerized services** (ECS, EC2, Docker) with a full security stack around them.
+
 This AWS security setup covers DNS protection, network visibility, web application filtering, container and instance vulnerability scanning, storage protection, centralized logging, configuration auditing, and security posture management. It combines services such as Route 53 Query Logging, AWS Shield, VPC Flow Logs, GuardDuty, Network Firewall, WAF, Inspector, ECR scanning, S3 Block Public Access, Macie, CloudTrail, AWS Config, Security Hub, CloudWatch Alarms, IAM, KMS, and Secrets Manager to provide layered security across the entire infrastructure.
 
 ## 🖼️ Diagram
@@ -21,3 +23,9 @@ This AWS security setup covers DNS protection, network visibility, web applicati
 | Observability             | CloudWatch Alarms                            | Security and operational alerting.                           | CloudWatch metric/alarm state.                 | CloudWatch console.                                   |
 | Access Control            | IAM                                          | Permissions and role management.                             | Audited via CloudTrail.                        | IAM console, CloudTrail.                              |
 | Encryption / Secrets      | KMS + Secrets Manager                        | Encryption and secure credential management.                 | Audited via CloudTrail.                        | KMS and Secrets Manager consoles, CloudTrail.         |
+
+## 🔗 Related in this repo
+- [`deploy-services/`](../deploy-services/) — all three deployment models (this folder = **containers always on**).
+- [`complete-infrastructure/`](../complete-infrastructure/) — base ALB, ECS, ECR, path routing diagram.
+- [`ecs-fargate-vs-ec2/`](../ecs-fargate-vs-ec2/) — Fargate vs EC2 launch type for ECS services.
+- [`ecr-lifecycle-ecs/`](../ecr-lifecycle-ecs/) — ECR image lifecycle after deploy.
