@@ -21,6 +21,7 @@ Three ways to **ship workloads** on AWS. Start at [`deploy-services/`](./deploy-
 | 🖥️ | [`ec2-bastion-and-private-rds/`](./ec2-bastion-and-private-rds/) | Private RDS, app on EC2/Docker, bastion + SSH tunnel for developers. |
 | 🍃 | [`ec2-mongodb-s3-backups/`](./ec2-mongodb-s3-backups/) | MongoDB on EC2 vs DocumentDB; backups to S3 — scripts in [Aws.Ec2.MongoDB.WithBackups.S3](https://github.com/agustinafassina/Aws.Ec2.MongoDB.WithBackups.S3). |
 | 🗄️ | [`rds-vs-aurora-vs-dynamodb/`](./rds-vs-aurora-vs-dynamodb/) | When to use RDS, Aurora, or DynamoDB (decision tables). |
+| 🌍 | [`dynamodb-cross-region-migration/`](./dynamodb-cross-region-migration/) | Migrate DynamoDB between Regions (Global Tables, Export/Import S3, Backup, Streams). |
 | 🔐 | [`password-policies-iam/`](./password-policies-iam/) | IAM password policy, rotation, MFA, Access Analyzer. |
 | 📦 | [`ecr-lifecycle-ecs/`](./ecr-lifecycle-ecs/) | ECR lifecycle diagram + [**Terraform**](./ecr-lifecycle-ecs/terraform/) (`repositories.tf`). |
 | ⚙️ | [`ecs-fargate-vs-ec2/`](./ecs-fargate-vs-ec2/) | ECS launch types (Fargate vs EC2) + task patterns (batch, event-driven scale-to-zero, always-on). |
