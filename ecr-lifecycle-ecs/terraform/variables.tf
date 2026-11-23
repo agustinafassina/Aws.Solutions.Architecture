@@ -11,13 +11,12 @@ variable "untagged_expire_days" {
 }
 
 variable "image_count_more_than" {
-  description = "Rule 2: when image count exceeds this number, expire oldest (keeps this many newest, excluding images in use by ECS)."
+  description = "Rule 2: when image count exceeds this number, expire the oldest (keeps this many newest). ECR does NOT check ECS usage — size this to cover the deployed image plus your rollback window."
   type        = number
   default     = 3
-}
 
-variable "max_image_age_days" {
-  description = "Rule 3: safety net — expire any image older than this many days (still skips images in use)."
-  type        = number
-  default     = 90
+  validation {
+    condition     = var.image_count_more_than >= 2
+    error_message = "Keep at least 2 images (current + one rollback target)."
+  }
 }
