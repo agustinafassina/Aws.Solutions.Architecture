@@ -1,7 +1,17 @@
-# ECR lifecycle policy — 3 rules per repository:
+
+# ECR lifecycle policy — 2 rules per repository:
 #   1) Expire untagged images (default: after 1 day)
 #   2) Keep at most N images (default: 3)
-#   3) Expire images older than N days (default: 90) — safety net
+#
+# ECR lifecycle policies do NOT know which images ECS is using: they expire by
+# age / count / tag only. Keep image_count_more_than high enough to cover the
+# image currently deployed plus the versions you may roll back to.
+#
+# There is intentionally no "expire older than N days" rule: on a stable service
+# that is not redeployed for N days it would delete the running image, and the
+# next task replacement or scale-out would fail with CannotPullContainerError.
+# Also, a rule with tagStatus = "any" must have the highest rulePriority, so only
+# one such rule can exist per policy.
 
 locals {
   lifecycle_policy = jsonencode({
@@ -24,17 +34,6 @@ locals {
           tagStatus   = "any"
           countType   = "imageCountMoreThan"
           countNumber = var.image_count_more_than
-        }
-        action = { type = "expire" }
-      },
-      {
-        rulePriority = 3
-        description  = "Safety net: expire images older than ${var.max_image_age_days} days"
-        selection = {
-          tagStatus   = "any"
-          countType   = "sinceImagePushed"
-          countUnit   = "days"
-          countNumber = var.max_image_age_days
         }
         action = { type = "expire" }
       }

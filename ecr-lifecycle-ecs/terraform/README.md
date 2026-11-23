@@ -10,6 +10,7 @@ terraform apply
 | --- | --- | --- |
 | 1 | Untagged | 1 day |
 | 2 | Max images | 3 |
-| 3 | Max age | 90 days |
+
+> ECR does **not** protect images used by ECS. Size `image_count_more_than` to cover the deployed image plus your rollback window.
 
 Optional overrides: `terraform.tfvars` (`aws_region`, rule numbers). See [`../README.md`](../README.md).
